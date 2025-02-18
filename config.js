@@ -11,4 +11,9 @@ config.email.port = 587
 config.email.user = "lombojonatan@gmail.com"
 config.email.pass = "mjzygxeqjpdwfutn"
 
+config.listaBlanca = [
+    "http://localhost:4200"
+]
+
+
 module.exports.config = config
