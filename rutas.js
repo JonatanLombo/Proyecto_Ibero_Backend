@@ -6,7 +6,7 @@ app.post("/usuarios/registrar", function(request, response){
     usuarios_controller.registrar(request, response)
 })
 
-app.get("/usuarios/activar/:email/:codigo", function(request, response){
+app.post("/usuarios/activar", function(request, response){
     usuarios_controller.activar(request, response)
 })
 

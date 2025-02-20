@@ -104,7 +104,7 @@ usuarios_controller.registrar = function(request, response){
                                     </div>
                                     
                                     <div style="margin-bottom: 20px;">
-                                        <a href="http://localhost:3000/usuarios/activar/${post.email}/${post.codigo}" style="background-color: #4CAF50; color: white; padding: 12px 20px; text-decoration: none; border-radius: 4px; font-size: 16px; text-align: center;">
+                                        <a href="http://localhost:4200/activar/${post.email}/${post.codigo}" style="background-color: #4CAF50; color: white; padding: 12px 20px; text-decoration: none; border-radius: 4px; font-size: 16px; text-align: center;">
                                             Activar Cuenta
                                         </a>
                                     </div>
@@ -129,7 +129,7 @@ usuarios_controller.registrar = function(request, response){
 
 
 
-                    response.json({state:true, mensaje:"Usuario guardado correctamente"})
+                    response.json({state:true, mensaje:"Usuario guardado correctamente, active su cuenta con el código envíado al correo electronico"})
                 }
                 else{
                     response.json({state:false, mensaje:"Se presentó un error al guardar el usuario"})
@@ -321,8 +321,8 @@ usuarios_controller.listar_id = function(request, response){
 
 usuarios_controller.activar = function(request, response){
     var post = {
-        email: request.params.email,
-        codigo: request.params.codigo
+        email: request.body.email,
+        codigo: request.body.codigo
     }
 
     if(post.email == "" || post.email == undefined || post.email == null){
@@ -338,7 +338,7 @@ usuarios_controller.activar = function(request, response){
             response.json({state:false, mensaje:"Error al activar la cuenta, verifique los datos"})
         }
         else{
-            response.json({state:false, mensaje:"Cuenta activada correctamente, dirijase al login"})
+            response.json({state:true, mensaje:"Cuenta activada correctamente, ingresa con tus credenciales"})
         }
     })
 }
