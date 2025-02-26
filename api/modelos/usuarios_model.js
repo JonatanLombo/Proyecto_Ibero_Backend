@@ -51,7 +51,8 @@ usuarios_model.ver_posicion_email = function(post, responder){
 usuarios_model.actualizar = function(post, responder){
     myModel.updateOne({email:post.email},{
         nombre:post.nombre,
-        apellido:post.apellido
+        apellido:post.apellido,
+        estado:post.estado
     }).then((respuesta)=> {
         //Si se pone un console.log(respueta) se puede evidenciar el error en la consola, si llega a salir error
         return responder ({state:true})

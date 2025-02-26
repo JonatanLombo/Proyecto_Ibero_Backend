@@ -191,6 +191,7 @@ usuarios_controller.actualizar = function(request, response){
         email: request.body.email,
         nombre: request.body.nombre,
         apellido: request.body.apellido,
+        estado: request.body.estado,
     }
 
     if(post.email == "" || post.email == undefined || post.email == null){
@@ -204,6 +205,11 @@ usuarios_controller.actualizar = function(request, response){
     if(post.apellido == "" || post.apellido == undefined || post.apellido == null){
         response.json({mensaje:"El campo apellido es obligatorio", state:false}) 
     }    
+
+    if(post.estado == "" || post.estado == undefined || post.estado == null){
+        response.json({mensaje:"El campo apellido es obligatorio", state:false}) 
+    }    
+
 
     // Se validan las expresiones regulares para identificar si el correo está correcto y cumple con la escructura
     const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
@@ -283,9 +289,8 @@ usuarios_controller.eliminar = function(request, response){
 
 usuarios_controller.listar = function(request, response){
     usuarios_model.listar(null, function(respuesta){
-        response.json({respuesta})
-    })
-  
+        response.json(respuesta)
+    }) 
 }
 
 usuarios_controller.listar_id = function(request, response){
