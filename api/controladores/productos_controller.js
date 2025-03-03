@@ -5,7 +5,10 @@ var productos_controller = {}
 productos_controller.guardar = function(request, response){
     var post = {
         codigo:request.body.codigo,
-        nombre:request.body.nombre
+        nombre:request.body.nombre,
+        imagen:request.body.imagen,
+        precio:request.body.precio,
+        descripcion:request.body.descripcion
     }
    
     if(post.codigo == undefined || post.codigo == null || post.codigo == ""){
@@ -15,6 +18,21 @@ productos_controller.guardar = function(request, response){
 
     if(post.nombre == undefined || post.nombre == null || post.nombre == ""){
         response.json({state:false, mensaje:"El campo nombre es obligatorio"})
+        return false
+    }
+
+    if(post.imagen == undefined || post.imagen == null || post.imagen == ""){
+        response.json({state:false, mensaje:"El campo imagen es obligatorio"})
+        return false
+    }
+
+    if(post.precio == undefined || post.precio == null || post.precio == ""){
+        response.json({state:false, mensaje:"El campo precio es obligatorio"})
+        return false
+    }
+    
+    if(post.descripcion == undefined || post.descripcion == null || post.descripcion == ""){
+        response.json({state:false, mensaje:"El campo descripción es obligatorio"})
         return false
     }
 
@@ -44,7 +62,10 @@ productos_controller.guardar = function(request, response){
 productos_controller.actualizar =function(request, response){
     var post = {
         _id:request.body._id,
-        nombre:request.body.nombre
+        nombre:request.body.nombre,
+        imagen:request.body.imagen,
+        precio:request.body.precio,
+        descripcion:request.body.descripcion
     }
    
     if(post._id == undefined || post._id == null || post._id == ""){

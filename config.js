@@ -1,5 +1,6 @@
 var config = {
-    email:{}
+    email:{},
+    sesiones:{}
 }
 
 config.puerto_express = 3000
@@ -10,6 +11,9 @@ config.email.host = "smtp.gmail.com"
 config.email.port = 587
 config.email.user = "lombojonatan@gmail.com"
 config.email.pass = "mjzygxeqjpdwfutn"
+
+config.sesiones.secret = "vgswdfyulvcabgdfsdvcbcgciaq"
+config.sesiones.expiracion = 60000 * 30
 
 config.listaBlanca = [
     "http://localhost:4200"

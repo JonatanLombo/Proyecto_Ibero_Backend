@@ -177,7 +177,10 @@ usuarios_controller.login = function(request, response){
                 response.json({state:false, mensaje:"Por favor active la cuenta con el código de su correo electronico"})
             }
             else
-            {            
+            {    
+            request.session.nombre = respuesta[0].nombre + " " + respuesta[0].apellido
+            request.session._id = respuesta[0]._id   
+            request.session.perfil = respuesta[0].perfil         
             response.json({state:true, mensaje:"Bienvenido: " + respuesta[0].nombre + " " + respuesta[0].apellido})
             }
         }
@@ -191,7 +194,8 @@ usuarios_controller.actualizar = function(request, response){
         email: request.body.email,
         nombre: request.body.nombre,
         apellido: request.body.apellido,
-        estado: request.body.estado,
+        perfil: request.body.perfil,
+        estado: request.body.estado
     }
 
     if(post.email == "" || post.email == undefined || post.email == null){
@@ -207,8 +211,12 @@ usuarios_controller.actualizar = function(request, response){
     }    
 
     if(post.estado == "" || post.estado == undefined || post.estado == null){
-        response.json({mensaje:"El campo apellido es obligatorio", state:false}) 
+        response.json({mensaje:"El campo estado es obligatorio", state:false}) 
     }    
+
+    if(post.perfil == "" || post.perfil == undefined || post.perfil == null){
+        response.json({mensaje:"El campo perfil es obligatorio", state:false}) 
+    } 
 
 
     // Se validan las expresiones regulares para identificar si el correo está correcto y cumple con la escructura

@@ -5,7 +5,10 @@ var Schema = mongoose.Schema
 // Estructura de como va a estar la colección. (los datos que captura)
 var productosSchema = new Schema ({
     nombre:String,
-    codigo:String
+    codigo:String,
+    imagen:String,
+    precio:String,
+    descripcion:String
 })
 
 //Modelado
@@ -25,6 +28,9 @@ productos_model.guardar = function(post, callback){
     const instancia = new myModel    
     instancia.nombre = post.nombre
     instancia.codigo = post.codigo
+    instancia.imagen = post.imagen
+    instancia.precio = post.precio
+    instancia.descripcion = post.descripcion
 
     //Se guardan los datos
     instancia.save()
@@ -39,7 +45,12 @@ productos_model.guardar = function(post, callback){
 }
 
 productos_model.actualizar = function(post, callback){
-    myModel.findOneAndUpdate({_id:post._id},{nombre:post.nombre})
+    myModel.findOneAndUpdate({_id:post._id},
+        {nombre:post.nombre,
+         imagen:post.imagen,
+         precio:post.precio,
+         descripcion:post.descripcion,
+        })
     .then((respuesta) =>{
         return callback ({state:true})
     }).catch((error) => {

@@ -4,6 +4,7 @@ global.app = express()
 var config = require("./config.js").config
 global.sha256 = require("sha256")
 const cors = require("cors")
+const session= require("express-session")
 
 // se debe descargar el paquete en node de body para que funcionen los post npm i body-parser
 var body_parser = require("body-parser")
@@ -24,7 +25,7 @@ app.all('*',function(req, res, next){
 });
 
 
-require("./rutas.js")
+
 
 mongoose.connect("mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.8/" + config.bd).then((respuesta) => {
     console.log("Conexión exitosa a Mongo")
@@ -45,6 +46,20 @@ app.use(cors({
     }
 }))
 
+app.use(session({
+    secret:config.sesiones.secret,
+    resave:true,
+    saveUninitialized:true,
+    cookie:{
+        maxAge:config.sesiones.expiracion,
+        httpOnly:true
+    },
+    name:"CookieApp",
+    rolling:true
+}))
+
+
+require("./rutas.js")
 // API (Interfaz de programación de aplicaciones) Es el intermediario entre backend y frontend y si se presentan errores se reportan
 // Las API regresan datos en formatro JSON
 // Un ejemplo son los mensajes que aparecen al momento de hacer un registro en donde dice que falta un dato por diligenciar

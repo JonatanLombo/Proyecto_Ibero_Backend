@@ -9,7 +9,8 @@ var usuariosSchema = new Schema ({
     apellido:String,
     password:String,
     estado:String,
-    codigo:String
+    codigo:String,
+    perfil:String
 })
 
 //Modelado
@@ -26,6 +27,7 @@ usuarios_model.registrar = function(post, responder){
     instancia.password = post.password
     instancia.estado = post.estado
     instancia.codigo = post.codigo
+    instancia.perfil = "Cliente"
 
     //Se guardan los datos
     instancia.save()
@@ -52,6 +54,7 @@ usuarios_model.actualizar = function(post, responder){
     myModel.updateOne({email:post.email},{
         nombre:post.nombre,
         apellido:post.apellido,
+        perfil:post.perfil,
         estado:post.estado
     }).then((respuesta)=> {
         //Si se pone un console.log(respueta) se puede evidenciar el error en la consola, si llega a salir error
@@ -85,7 +88,7 @@ usuarios_model.listar = function(post, responder){
 }
 
 usuarios_model.login = function(post, responder){
-    myModel.find({email:post.email, password:post.password},{nombre:1,apellido:1,estado:1})
+    myModel.find({email:post.email, password:post.password},{_id:1,nombre:1,apellido:1,estado:1,perfil:1})
     .then((respuesta)=> {
         //Si se pone un console.log(respueta) se puede evidenciar el error en la consola, si llega a salir error
         return responder(respuesta)
