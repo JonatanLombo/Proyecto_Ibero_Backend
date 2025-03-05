@@ -109,3 +109,13 @@ app.post("/servicios/listar", function(request, response){
 app.post("/servicios/listar_id", function(request, response){
     servicios_controller.listar_id(request, response)
 })
+
+var archivos_controller = require("./api/controladores/archivos_controller.js").archivos_controller
+
+app.post("/upload/:nombreArchivo",function(request, response){
+    archivos_controller.upload (request, response)
+})
+
+app.post("/avatar/:nombreArchivo",function(request, response){
+    archivos_controller.avatar (request, response)
+})

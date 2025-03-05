@@ -5,6 +5,9 @@ var config = require("./config.js").config
 global.sha256 = require("sha256")
 const cors = require("cors")
 const session= require("express-session")
+global.multer = require("multer")
+global.path = require("path")
+global.appRoot = path.resolve(__dirname)
 
 // se debe descargar el paquete en node de body para que funcionen los post npm i body-parser
 var body_parser = require("body-parser")
@@ -60,17 +63,9 @@ app.use(session({
 
 
 require("./rutas.js")
-// API (Interfaz de programación de aplicaciones) Es el intermediario entre backend y frontend y si se presentan errores se reportan
-// Las API regresan datos en formatro JSON
-// Un ejemplo son los mensajes que aparecen al momento de hacer un registro en donde dice que falta un dato por diligenciar
 
-//Metodos para peticiones
-
-// Get: Trae información.  Envía información a tráves de la URL
-// Post: Crear información 
-// Put: Hacer modificaciones en los datos
-// Delete: Borrar información
-
+app.use("/avatar", express.static(__dirname + "/avatar"))
+app.use("/imagenes", express.static(__dirname + "/imagenes"))
 app.use("/", express.static(__dirname + "/pagina"))
 
 
@@ -78,7 +73,3 @@ app.listen(config.puerto_express, function(){
     console.log("Servidor funcionando por el puerto " + config.puerto_express);    
 })
 
-// MVC  MODELO, VISTA, CONTROLADOR
-// MODELO ES EL SISTEMA DE ACTUALIZA, CREA Y DEMÁS
-// VISTA ES LA PARTE GRAFICA O LA IDEA QUE SE TIENE DE HACER ALGO 
-// CONTROLADOR ES EL QUE VALIDA QUE LA INFORMACIÓN ESTE DILIGENCIADA SEA CORRECTA Y CUMPLA CON LOS CRITERIOS 
