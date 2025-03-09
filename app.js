@@ -64,6 +64,8 @@ app.use(session({
 
 require("./rutas.js")
 
+app.use("/portada", express.static(__dirname + "/portada"))
+app.use("/plantas", express.static(__dirname + "/plantas"))
 app.use("/avatar", express.static(__dirname + "/avatar"))
 app.use("/imagenes", express.static(__dirname + "/imagenes"))
 app.use("/", express.static(__dirname + "/pagina"))

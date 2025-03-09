@@ -87,6 +87,31 @@ app.post("/productos/listar_id", function(request, response){
     productos_controller.listar_id(request, response)
 })
 
+var plantas_controller = require("./api/controladores/plantas_controller.js").plantas_controller
+
+app.post("/plantas/guardar",soloAdmin, function(request, response){
+    plantas_controller.guardar(request, response)
+})
+
+app.post("/plantas/actualizar",soloAdmin, function(request, response){
+    plantas_controller.actualizar(request, response)
+})
+
+app.post("/plantas/eliminar",soloAdmin, function(request, response){
+    plantas_controller.eliminar(request, response)
+})
+
+app.post("/plantas/listar", function(request, response){
+    plantas_controller.listar(request, response)
+})
+
+app.post("/plantas/listar_id", function(request, response){
+    plantas_controller.listar_id(request, response)
+})
+
+
+
+
 
 var servicios_controller = require("./api/controladores/servicios_controller.js").servicios_controller
 
@@ -118,4 +143,31 @@ app.post("/upload/:nombreArchivo",function(request, response){
 
 app.post("/avatar/:nombreArchivo",function(request, response){
     archivos_controller.avatar (request, response)
+})
+
+app.post("/portada/:nombreArchivo",function(request, response){
+    archivos_controller.portada (request, response)
+})
+
+app.post("/plantas/:nombreArchivo",function(request, response){
+    archivos_controller.plantas (request, response)
+})
+
+
+var conocenos_controller = require("./api/controladores/conocenos_controller.js").conocenos_controller
+
+app.post("/conocenos/guardar", function(request, response){
+    conocenos_controller.guardar(request, response)
+})
+
+app.post("/conocenos/actualizar",function(request, response){
+    conocenos_controller.actualizar(request, response)
+})
+
+app.post("/conocenos/listar", function(request, response){
+    conocenos_controller.listar(request, response)
+})
+
+app.post("/conocenos/listar_id", function(request, response){
+    conocenos_controller.listar_id(request, response)
 })
