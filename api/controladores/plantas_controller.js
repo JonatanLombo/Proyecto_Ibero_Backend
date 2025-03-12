@@ -8,7 +8,10 @@ plantas_controller.guardar = function(request, response){
         nombre:request.body.nombre,
         imagen:request.body.imagen,
         precio:request.body.precio,
-        descripcion:request.body.descripcion
+        descripcion:request.body.descripcion,
+        beneficios:request.body.beneficios,
+        recomendaciones:request.body.recomendaciones
+
     }
    
     if(post.codigo == undefined || post.codigo == null || post.codigo == ""){
@@ -18,11 +21,6 @@ plantas_controller.guardar = function(request, response){
 
     if(post.nombre == undefined || post.nombre == null || post.nombre == ""){
         response.json({state:false, mensaje:"El campo nombre es obligatorio"})
-        return false
-    }
-
-    if(post.imagen == undefined || post.imagen == null || post.imagen == ""){
-        response.json({state:false, mensaje:"El campo imagen es obligatorio"})
         return false
     }
 
@@ -36,17 +34,43 @@ plantas_controller.guardar = function(request, response){
         return false
     }
 
+    if(post.beneficios == undefined || post.beneficios == null || post.beneficios == ""){
+        response.json({state:false, mensaje:"El campo beneficios es obligatorio"})
+        return false
+    }
+
+    if(post.recomendaciones == undefined || post.recomendaciones == null || post.recomendaciones == ""){
+        response.json({state:false, mensaje:"El campo recomendaciones es obligatorio"})
+        return false
+    }
+
     if(post.nombre.length > 30){
         response.json({mensaje:"El nombre no es valido. Intente un nombre más corto", state:false})
         return false
     }
 
+    if(post.descripcion.length > 2400){
+        response.json({mensaje:"La descripción no es valido. Intente un texto más corto", state:false})
+        return false
+    }
+
+    if(post.beneficios.length > 2400){
+        response.json({mensaje:"Los beneficios no son validos. Intente un texto más corto", state:false})
+        return false
+    }
+
+    if(post.recomendaciones.length > 2400){
+        response.json({mensaje:"Las recomendaciones no son validas. Intente un texto más corto", state:false})
+        return false
+    }
+
+
     plantas_model.validarCodigo(post, function(respuesta){
     
         if(respuesta.length == 0){    
             plantas_model.guardar(post, function(respuesta_2){
-            if(respuesta_2.state = true){
-                response.json({state:true, mensaje:"Elemento guardado correctamente"})
+            if(respuesta_2.state == true){
+                response.json({state:true, mensaje:"Elemento guardado correctamente, recuerda actualizar la imagen de la planta"})
             }
             else{
                 response.json({state:false, mensaje:"Error al momento de guardar el elemento"})
@@ -65,7 +89,9 @@ plantas_controller.actualizar =function(request, response){
         nombre:request.body.nombre,
         imagen:request.body.imagen,
         precio:request.body.precio,
-        descripcion:request.body.descripcion
+        descripcion:request.body.descripcion,
+        recomendaciones:request.body.recomendaciones,
+        beneficios:request.body.beneficios,
     }
    
     if(post._id == undefined || post._id == null || post._id == ""){
@@ -78,13 +104,39 @@ plantas_controller.actualizar =function(request, response){
         return false
     }
 
+    if(post.descripcion == undefined || post.descripcion == null || post.descripcion == ""){
+        response.json({state:false, mensaje:"El campo descripción es obligatorio"})
+        return false
+    }
+
+    if(post.beneficios == undefined || post.beneficios == null || post.beneficios == ""){
+        response.json({state:false, mensaje:"El campo beneficios es obligatorio"})
+        return false
+    }
+
     if(post.nombre.length > 30){
         response.json({mensaje:"El nombre no es valido. Intente un nombre más corto", state:false})
         return false
     }
 
+    if(post.descripcion.length > 2400){
+        response.json({mensaje:"La descripción no es valido. Intente un texto más corto", state:false})
+        return false
+    }
+
+    if(post.beneficios.length > 2400){
+        response.json({mensaje:"Los beneficios no son validos. Intente un texto más corto", state:false})
+        return false
+    }
+
+    if(post.recomendaciones.length > 2400){
+        response.json({mensaje:"Las recomendaciones no son validas. Intente un texto más corto", state:false})
+        return false
+    }
+    
+
             plantas_model.actualizar(post, function(respuesta_2){
-            if(respuesta_2.state = true){
+            if(respuesta_2.state == true){
                 response.json({state:true, mensaje:"Elemento actualizado correctamente"})
             }
             else{
@@ -104,7 +156,7 @@ plantas_controller.eliminar =function(request, response){
     }
 
             plantas_model.eliminar(post, function(respuesta_2){
-            if(respuesta_2.state = true){
+            if(respuesta_2.state == true){
                 response.json({state:true, mensaje:"Elemento eliminado correctamente"})
             }
             else{

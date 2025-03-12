@@ -8,7 +8,9 @@ var plantasSchema = new Schema ({
     codigo:String,
     imagen:String,
     precio:String,
-    descripcion:String
+    descripcion:String,
+    beneficios:String,
+    recomendaciones:String
 })
 
 //Modelado
@@ -31,6 +33,8 @@ plantas_model.guardar = function(post, callback){
     instancia.imagen = post.imagen
     instancia.precio = post.precio
     instancia.descripcion = post.descripcion
+    instancia.beneficios = post.beneficios
+    instancia.recomendaciones = post.recomendaciones
 
     //Se guardan los datos
     instancia.save()
@@ -50,6 +54,8 @@ plantas_model.actualizar = function(post, callback){
          imagen:post.imagen,
          precio:post.precio,
          descripcion:post.descripcion,
+         beneficios:post.beneficios,
+         recomendaciones:post.recomendaciones
         })
     .then((respuesta) =>{
         return callback ({state:true})

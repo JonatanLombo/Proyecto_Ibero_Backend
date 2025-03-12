@@ -135,4 +135,39 @@ archivos_controller.plantas = function(request, response){
 
 }
 
+archivos_controller.macetas = function(request, response){
+    var macetas = multer({
+        storage:multer.diskStorage({
+            destination:(request, file, callback) =>{
+                callback(null, appRoot + '/macetas/')
+            },
+            filename:(request, file, callback) =>{
+                callback(null,request.params.nombreArchivo + '.png')
+            }
+        }),
+        fileFilter:(request, file, callback) =>{
+            var ext = path.extname(file.originalname)
+            if(ext !== ".png" && ext !== ".jpg" && ext !== ".tif" && ext !== ".jpeg" && ext !== ".jfif"){
+                callback("Solo se admiten adjuntos en formato de imagen",null)
+            }
+            else{
+                callback(null,true)
+            }
+        }
+    }).single("file")
+
+    macetas(request, response, function(error){
+        if(error){
+            console.log(error)
+           response.json({state:false, mensaje:"Error al cargar el archivo", error:error}) 
+        }
+        else{
+            response.json({state:true, mensaje:"Archivo cargado correctamente"})
+        }
+    })    
+
+}
+
+
+
 module.exports.archivos_controller = archivos_controller

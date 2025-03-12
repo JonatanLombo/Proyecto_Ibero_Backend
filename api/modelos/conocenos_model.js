@@ -5,8 +5,7 @@ var Schema = mongoose.Schema
 // Estructura de como va a estar la colección. (los datos que captura)
 var conocenosSchema = new Schema ({
     text_1:String,
-    text_2:String,
-    imagen:String
+    text_2:String
 })
 
 //Modelado
@@ -30,7 +29,7 @@ conocenos_model.guardar = function(post, callback){
 }
 
 conocenos_model.actualizar = function(post, responder){
-    myModel.findOneAndUpdate({ _id:post._id},{
+    myModel.findOneAndUpdate({},{
             text_1:post.text_1,
             text_2:post.text_2      
     }).then((respuesta)=> {
@@ -51,14 +50,5 @@ conocenos_model.listar = function(post, callback){
     })
 }
 
-conocenos_model.listar_id = function(post, callback){
-    myModel.find({_id:post._id},{})
-    .then((respuesta) =>{
-        return callback (respuesta)
-    }).catch((error) => {
-        console.log(error)
-        return callback ([])
-    })
-}
 
 module.exports.conocenos_model = conocenos_model

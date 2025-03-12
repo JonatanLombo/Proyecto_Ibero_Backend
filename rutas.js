@@ -11,8 +11,6 @@ var soloAdmin = function(request, response, next){
     }
 }
 
-//POST
-// CADA VEZ SE USA POST SE DEBE CAPTURAR DATOS DE LA PETICIÓN CON .body SEGUIDO DEL NOMBRE DE LA VARIABLE .body.email
 app.post("/usuarios/registrar", function(request, response){
     usuarios_controller.registrar(request, response)
 })
@@ -25,30 +23,18 @@ app.post("/usuarios/login", function(request, response){
     usuarios_controller.login(request, response)
 })
 
-//PUT
-// CADA VEZ SE USA PUT SE DEBE CAPTURAR DATOS DE LA PETICIÓN CON .body SEGUIDO DEL NOMBRE DE LA VARIABLE .body.email
-// Se requieren casi las mismas validaciones, solo es buscar por el identificador e indicar que datos se actualizan. Cambia el push
 app.put("/usuarios/actualizar", soloAdmin, function(request, response){
     usuarios_controller.actualizar(request, response)
 })
 
-
-//DETELE
-// CADA VEZ SE USA DELETE SE DEBE CAPTURAR DATOS DE LA PETICIÓN CON .body SEGUIDO DEL NOMBRE DE LA VARIABLE .body.email
-// Se requieren casi las mismas validaciones, solo es buscar por el identificador y eliminar el mismo, los demás datos sobran. Cambia a splice
 app.post("/usuarios/eliminar", soloAdmin, function(request, response){
     usuarios_controller.eliminar(request, response)
 })
 
-
-// Traer información
-//GET
 app.get("/usuarios/listar",soloAdmin, function(request, response){
     usuarios_controller.listar(request, response)
 })
 
-// Traer información especifica
-//con POST para no exponer el id en la URL
 app.post("/usuarios/listar_id",soloAdmin, function(request, response){
     usuarios_controller.listar_id(request, response)
 })
@@ -62,29 +48,28 @@ app.post("/usuarios/logout", function(request, response){
     response.json({state:true, mensaje:"Sesión cerrada"})
 })
 
-// POST/GET/PUT/GET/DELETE es el CRUD 
-// CREATE/READ/UPDATE/DELETE 
 
-var productos_controller = require("./api/controladores/productos_controller.js").productos_controller
 
-app.post("/productos/guardar",soloAdmin, function(request, response){
-    productos_controller.guardar(request, response)
+var macetas_controller = require("./api/controladores/macetas_controller.js").macetas_controller
+
+app.post("/macetas/guardar",soloAdmin, function(request, response){
+    macetas_controller.guardar(request, response)
 })
 
-app.post("/productos/actualizar",soloAdmin, function(request, response){
-    productos_controller.actualizar(request, response)
+app.post("/macetas/actualizar",soloAdmin, function(request, response){
+    macetas_controller.actualizar(request, response)
 })
 
-app.post("/productos/eliminar",soloAdmin, function(request, response){
-    productos_controller.eliminar(request, response)
+app.post("/macetas/eliminar",soloAdmin, function(request, response){
+    macetas_controller.eliminar(request, response)
 })
 
-app.post("/productos/listar", function(request, response){
-    productos_controller.listar(request, response)
+app.post("/macetas/listar", function(request, response){
+    macetas_controller.listar(request, response)
 })
 
-app.post("/productos/listar_id", function(request, response){
-    productos_controller.listar_id(request, response)
+app.post("/macetas/listar_id", function(request, response){
+    macetas_controller.listar_id(request, response)
 })
 
 var plantas_controller = require("./api/controladores/plantas_controller.js").plantas_controller
@@ -135,13 +120,15 @@ app.post("/servicios/listar_id", function(request, response){
     servicios_controller.listar_id(request, response)
 })
 
+
+
 var archivos_controller = require("./api/controladores/archivos_controller.js").archivos_controller
 
-app.post("/upload/:nombreArchivo",function(request, response){
+app.post("/upload/:nombreArchivo", function(request, response){
     archivos_controller.upload (request, response)
 })
 
-app.post("/avatar/:nombreArchivo",function(request, response){
+app.post("/avatar/:nombreArchivo", function(request, response){
     archivos_controller.avatar (request, response)
 })
 
@@ -153,21 +140,17 @@ app.post("/plantas/:nombreArchivo",function(request, response){
     archivos_controller.plantas (request, response)
 })
 
+app.post("/macetas/:nombreArchivo",function(request, response){
+    archivos_controller.macetas (request, response)
+})
+
 
 var conocenos_controller = require("./api/controladores/conocenos_controller.js").conocenos_controller
 
-app.post("/conocenos/guardar", function(request, response){
+app.post("/conocenos/guardar"/*, soloAdmin*/,function(request, response){
     conocenos_controller.guardar(request, response)
-})
-
-app.post("/conocenos/actualizar",function(request, response){
-    conocenos_controller.actualizar(request, response)
 })
 
 app.post("/conocenos/listar", function(request, response){
     conocenos_controller.listar(request, response)
-})
-
-app.post("/conocenos/listar_id", function(request, response){
-    conocenos_controller.listar_id(request, response)
 })

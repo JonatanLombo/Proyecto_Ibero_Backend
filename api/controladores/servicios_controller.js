@@ -62,7 +62,7 @@ servicios_controller.actualizar =function(request, response){
     }
 
             servicios_model.actualizar(post, function(respuesta_2){
-            if(respuesta_2.state = true){
+            if(respuesta_2.state == true){
                 response.json({state:true, mensaje:"Elemento actualizado correctamente"})
             }
             else{
