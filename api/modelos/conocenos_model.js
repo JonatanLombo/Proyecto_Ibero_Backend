@@ -51,4 +51,5 @@ conocenos_model.listar = function(post, callback){
 }
 
 
+conocenos_model.myModel = myModel
 module.exports.conocenos_model = conocenos_model

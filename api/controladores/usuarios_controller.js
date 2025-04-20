@@ -15,14 +15,17 @@ usuarios_controller.registrar = function(request, response){
 
     if(post.email == "" || post.email == undefined || post.email == null){
         response.json({mensaje:"El campo email es obligatorio", state:false}) 
+        return false
     }
 
     if(post.nombre == "" || post.nombre == undefined || post.nombre == null){
         response.json({mensaje:"El campo nombre es obligatorio", state:false}) 
+        return false
     }
 
     if(post.apellido == "" || post.apellido == undefined || post.apellido == null){
         response.json({mensaje:"El campo apellido es obligatorio", state:false}) 
+        return false
     }
     
     if(post.password == "" || post.password == undefined || post.password == null){
@@ -120,10 +123,10 @@ usuarios_controller.registrar = function(request, response){
                     //Envío del correo
                     transporter.sendMail(mailOptions, (error, info) => {
                         if(error){
-                            console.log(error)
+                           // console.log(error)
                         }
                         else{
-                            console.log(info)
+                            //console.log(info)
                         }
                     })    
 
@@ -200,14 +203,17 @@ usuarios_controller.actualizar = function(request, response){
 
     if(post.email == "" || post.email == undefined || post.email == null){
         response.json({mensaje:"El campo email es obligatorio", state:false}) 
+        return false
     }
 
     if(post.nombre == "" || post.nombre == undefined || post.nombre == null){
         response.json({mensaje:"El campo nombre es obligatorio", state:false}) 
+        return false
     }
 
     if(post.apellido == "" || post.apellido == undefined || post.apellido == null){
         response.json({mensaje:"El campo apellido es obligatorio", state:false}) 
+        return false
     }    
 
     if(post.estado == "" || post.estado == undefined || post.estado == null){
@@ -343,7 +349,7 @@ usuarios_controller.activar = function(request, response){
     }
 
     if(post.codigo == "" || post.codigo == undefined || post.codigo == null){
-        response.json({mensaje:"El campo nombre es obligatorio", state:false}) 
+        response.json({mensaje:"El campo codigo es obligatorio", state:false}) 
     }
 
     usuarios_model.activar(post, function(res){

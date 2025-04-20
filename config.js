@@ -5,6 +5,7 @@ var config = {
 
 config.puerto_express = 3000
 config.bd = "final_proyect"
+config.test = "final_test"
 config.secret = "jvnadvg54av66465v5sdvfCF5Gdferfv<avad%%&($W%QW%45R4HGRASsdgfjd__ytvsev4"
 
 config.email.host = "smtp.gmail.com"
@@ -16,7 +17,8 @@ config.sesiones.secret = "vgswdfyulvcabgdfsdvcbcgciaq"
 config.sesiones.expiracion = 60000 * 30
 
 config.listaBlanca = [
-    "http://localhost:4200"
+    "http://localhost:4200",
+    "http://localhost:9876"
 ]
 
 

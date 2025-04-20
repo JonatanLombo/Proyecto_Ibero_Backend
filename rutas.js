@@ -23,19 +23,19 @@ app.post("/usuarios/login", function(request, response){
     usuarios_controller.login(request, response)
 })
 
-app.put("/usuarios/actualizar", soloAdmin, function(request, response){
+app.put("/usuarios/actualizar", /*soloAdmin,*/ function(request, response){
     usuarios_controller.actualizar(request, response)
 })
 
-app.post("/usuarios/eliminar", soloAdmin, function(request, response){
+app.post("/usuarios/eliminar", /*soloAdmin,*/ function(request, response){
     usuarios_controller.eliminar(request, response)
 })
 
-app.get("/usuarios/listar",soloAdmin, function(request, response){
+app.get("/usuarios/listar", /*soloAdmin,*/ function(request, response){
     usuarios_controller.listar(request, response)
 })
 
-app.post("/usuarios/listar_id",soloAdmin, function(request, response){
+app.post("/usuarios/listar_id", /*soloAdmin,*/ function(request, response){
     usuarios_controller.listar_id(request, response)
 })
 
@@ -74,15 +74,15 @@ app.post("/macetas/listar_id", function(request, response){
 
 var plantas_controller = require("./api/controladores/plantas_controller.js").plantas_controller
 
-app.post("/plantas/guardar",soloAdmin, function(request, response){
+app.post("/plantas/guardar", /*soloAdmin,*/ function(request, response){
     plantas_controller.guardar(request, response)
 })
 
-app.post("/plantas/actualizar",soloAdmin, function(request, response){
+app.post("/plantas/actualizar", /*soloAdmin,*/ function(request, response){
     plantas_controller.actualizar(request, response)
 })
 
-app.post("/plantas/eliminar",soloAdmin, function(request, response){
+app.post("/plantas/eliminar", /*soloAdmin,*/ function(request, response){
     plantas_controller.eliminar(request, response)
 })
 
@@ -144,10 +144,18 @@ app.post("/macetas/:nombreArchivo",function(request, response){
     archivos_controller.macetas (request, response)
 })
 
+app.post("/recursosImg/:nombreArchivo",function(request, response){
+    archivos_controller.recursosImg (request, response)
+})
+
+app.post("/recursosVideos/:nombreArchivo",function(request, response){
+    archivos_controller.recursosVideos (request, response)
+})
+
 
 var conocenos_controller = require("./api/controladores/conocenos_controller.js").conocenos_controller
 
-app.post("/conocenos/guardar"/*, soloAdmin*/,function(request, response){
+app.post("/conocenos/guardar",function(request, response){
     conocenos_controller.guardar(request, response)
 })
 

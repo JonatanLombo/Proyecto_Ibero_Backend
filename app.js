@@ -29,7 +29,14 @@ app.all('*',function(req, res, next){
 
 
 
+//Base pruebas
+// mongoose.connect("mongodb://127.0.0.1:27017/" + config.bd).then((respuesta) => {
+//     console.log("Conexión exitosa a Mongo")
+// }).catch((error) => {
+//     console.log(error)
+// })
 
+//Base producción
 mongoose.connect("mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.8/" + config.bd).then((respuesta) => {
     console.log("Conexión exitosa a Mongo")
 }).catch((error) => {

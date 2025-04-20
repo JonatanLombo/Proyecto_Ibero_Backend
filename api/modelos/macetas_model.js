@@ -93,5 +93,5 @@ macetas_model.listar_id = function(post, callback){
 }
 
 
-
+macetas_model.myModel = myModel
 module.exports.macetas_model = macetas_model

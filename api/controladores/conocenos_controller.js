@@ -19,7 +19,7 @@ conocenos_controller.guardar = function(request, response){
     }
 
     if(post.text_1.length > 4000 || post.text_2.length > 4000 ){
-        response.json({mensaje:"La descripción no es validoa. Intente una más corta", state:false})
+        response.json({mensaje:"La descripción no es valida. Intente una más corta", state:false})
         return false
     }
 

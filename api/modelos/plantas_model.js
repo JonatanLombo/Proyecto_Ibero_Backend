@@ -96,5 +96,5 @@ plantas_model.listar_id = function(post, callback){
 }
 
 
-
+plantas_model.myModel = myModel
 module.exports.plantas_model = plantas_model

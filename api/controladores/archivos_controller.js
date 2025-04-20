@@ -168,6 +168,70 @@ archivos_controller.macetas = function(request, response){
 
 }
 
+archivos_controller.recursosImg = function(request, response){
+    var recursosImg = multer({
+        storage:multer.diskStorage({
+            destination:(request, file, callback) =>{
+                callback(null, appRoot + '/recursosImg/')
+            },
+            filename:(request, file, callback) =>{
+                callback(null,request.params.nombreArchivo + '.png')
+            }
+        }),
+        fileFilter:(request, file, callback) =>{
+            var ext = path.extname(file.originalname)
+            if(ext !== ".png" && ext !== ".jpg" && ext !== ".tif" && ext !== ".jpeg" && ext !== ".jfif"){
+                callback("Solo se admiten adjuntos en formato de imagen",null)
+            }
+            else{
+                callback(null,true)
+            }
+        }
+    }).single("file")
 
+    recursosImg(request, response, function(error){
+        if(error){
+            console.log(error)
+           response.json({state:false, mensaje:"Error al cargar el archivo", error:error}) 
+        }
+        else{
+            response.json({state:true, mensaje:"Archivo cargado correctamente"})
+        }
+    })    
+
+}
+
+archivos_controller.recursosVideos = function(request, response){
+    var recursosVideos = multer({
+        storage:multer.diskStorage({
+            destination:(request, file, callback) =>{
+                callback(null, appRoot + '/recusosVideos/')
+            },
+            filename:(request, file, callback) =>{
+                callback(null,request.params.nombreArchivo + '.mp4')
+            }
+        }),
+        fileFilter:(request, file, callback) =>{
+            var ext = path.extname(file.originalname)
+            if(ext !== ".mp4"){
+                callback("Solo se admiten videos en formato mp4",null)
+            }
+            else{
+                callback(null,true)
+            }
+        }
+    }).single("file")
+
+    recursosVideos(request, response, function(error){
+        if(error){
+            console.log(error)
+           response.json({state:false, mensaje:"Error al cargar el archivo", error:error}) 
+        }
+        else{
+            response.json({state:true, mensaje:"Archivo cargado correctamente"})
+        }
+    })    
+
+}
 
 module.exports.archivos_controller = archivos_controller

@@ -122,5 +122,6 @@ usuarios_model.activar = function(post, responder){
     })
 }
 
+usuarios_model.myModel = myModel
 module.exports.usuarios_model = usuarios_model
         
