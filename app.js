@@ -8,6 +8,9 @@ const session= require("express-session")
 global.multer = require("multer")
 global.path = require("path")
 global.appRoot = path.resolve(__dirname)
+global.json2xls = require("json2xls")
+global.fs = require("fs")
+global.documentoPDF = require("pdfkit")
 
 // se debe descargar el paquete en node de body para que funcionen los post npm i body-parser
 var body_parser = require("body-parser")

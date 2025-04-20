@@ -186,5 +186,64 @@ plantas_controller.listar_id =function(request, response){
     })  
 }
 
+plantas_controller.generarXLS =function(request, response){
+    plantas_model.listar(null, function(respuesta){
+       var json = respuesta.map(({_doc})=>{
+        const {__v, ...rest} = _doc;
+        return rest;
+       }) 
+       var xls = json2xls(json)
+       fs.writeFileSync("plantas.xlsx",xls,'binary')
+       response.download('plantas.xlsx', function(error){
+        if(error){
+            console.log(error)
+        }
+        else{
+            console.log("Descarga completa")
+            fs.unlinkSync("plantas.xlsx")
+        }
+       })
+    })
+}
+
+plantas_controller.generarPDF =function(request, response){
+    plantas_model.listar(null, function(respuesta){
+        const doc = new documentoPDF()
+        var writeStream = fs.createWriteStream("plantas.pdf")
+        doc.pipe(writeStream)
+
+        doc.fontSize(14).text("Lista de plantas",240,70)
+        doc.fontSize(10).text("Código",80,100)
+        doc.fontSize(10).text("Nombre",150,100)
+        doc.fontSize(10).text("Precio",250,100)
+        doc.fontSize(10).text("Descripción",320,100)
+
+        for (let a = 0; a < respuesta.length; a++) {
+            doc.fontSize(10).text(respuesta[a].codigo,80,120 +a *146)
+            doc.fontSize(10).text(respuesta[a].nombre,150,120 +a *146)
+            doc.fontSize(10).text(respuesta[a].precio,250,120 +a *146)
+            doc.fontSize(10).text(respuesta[a].descripcion,320,120 +a *146)
+
+        if(a == respuesta.length - 1){
+            doc.end();
+            writeStream.on("finish", function(){    
+                console.log("Archivo finalizado")
+                response.download('plantas.pdf', function(error){
+                if(error){
+                    console.log(error)
+                }
+                else{
+                    console.log("Descarga completa")
+                    fs.unlinkSync("plantas.pdf")
+                }
+            })
+          
+            })   
+        }   
+    }
+})
+
+}
+
 
 module.exports.plantas_controller = plantas_controller

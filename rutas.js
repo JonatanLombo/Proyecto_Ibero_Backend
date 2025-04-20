@@ -23,19 +23,19 @@ app.post("/usuarios/login", function(request, response){
     usuarios_controller.login(request, response)
 })
 
-app.put("/usuarios/actualizar", /*soloAdmin,*/ function(request, response){
+app.put("/usuarios/actualizar", soloAdmin, function(request, response){
     usuarios_controller.actualizar(request, response)
 })
 
-app.post("/usuarios/eliminar", /*soloAdmin,*/ function(request, response){
+app.post("/usuarios/eliminar", soloAdmin, function(request, response){
     usuarios_controller.eliminar(request, response)
 })
 
-app.get("/usuarios/listar", /*soloAdmin,*/ function(request, response){
+app.get("/usuarios/listar", soloAdmin, function(request, response){
     usuarios_controller.listar(request, response)
 })
 
-app.post("/usuarios/listar_id", /*soloAdmin,*/ function(request, response){
+app.post("/usuarios/listar_id", soloAdmin, function(request, response){
     usuarios_controller.listar_id(request, response)
 })
 
@@ -72,17 +72,26 @@ app.post("/macetas/listar_id", function(request, response){
     macetas_controller.listar_id(request, response)
 })
 
+app.get("/macetas/generarXLS", function(request, response){
+    macetas_controller.generarXLS(request, response)
+})
+
+app.get("/macetas/generarPDF", function(request, response){
+    macetas_controller.generarPDF(request, response)
+})
+
+
 var plantas_controller = require("./api/controladores/plantas_controller.js").plantas_controller
 
-app.post("/plantas/guardar", /*soloAdmin,*/ function(request, response){
+app.post("/plantas/guardar", soloAdmin, function(request, response){
     plantas_controller.guardar(request, response)
 })
 
-app.post("/plantas/actualizar", /*soloAdmin,*/ function(request, response){
+app.post("/plantas/actualizar", soloAdmin, function(request, response){
     plantas_controller.actualizar(request, response)
 })
 
-app.post("/plantas/eliminar", /*soloAdmin,*/ function(request, response){
+app.post("/plantas/eliminar", soloAdmin, function(request, response){
     plantas_controller.eliminar(request, response)
 })
 
@@ -94,8 +103,13 @@ app.post("/plantas/listar_id", function(request, response){
     plantas_controller.listar_id(request, response)
 })
 
+app.get("/plantas/generarXLS", function(request, response){
+    plantas_controller.generarXLS(request, response)
+})
 
-
+app.get("/plantas/generarPDF", function(request, response){
+    plantas_controller.generarPDF(request, response)
+})
 
 
 var servicios_controller = require("./api/controladores/servicios_controller.js").servicios_controller
