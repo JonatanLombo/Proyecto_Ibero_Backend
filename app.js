@@ -39,12 +39,19 @@ app.all('*',function(req, res, next){
 //     console.log(error)
 // })
 
-//Base producción
-mongoose.connect("mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.8/" + config.bd).then((respuesta) => {
-    console.log("Conexión exitosa a Mongo")
+//Base producción trabajo local
+// mongoose.connect("mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.8/" + config.bd).then((respuesta) => {
+//     console.log("Conexión exitosa a Mongo")
+// }).catch((error) => {
+//     console.log(error)
+// })
+
+mongoose.connect("mongodb://" + config.bdUser + ":" + config.bdPass + '@' + config.bdIp + ":" + config.bdPort +  "/" + config.bd).then((respuesta)=>{
+    console.log("Conexion correcta a mongo")
 }).catch((error) => {
     console.log(error)
 })
+
 
 app.use(cors({
     origin: function(origin, callback){
@@ -79,7 +86,13 @@ app.use("/plantas", express.static(__dirname + "/plantas"))
 app.use("/macetas", express.static(__dirname + "/macetas"))
 app.use("/avatar", express.static(__dirname + "/avatar"))
 app.use("/imagenes", express.static(__dirname + "/imagenes"))
-app.use("/", express.static(__dirname + "/pagina"))
+
+app.use('/', express.static(__dirname + '/dist/frontend/browser'));
+
+app.get('/*', function(req, res, next) {
+    res.sendFile(path.resolve(__dirname + "/dist/frontend/browser/index.html"));
+});
+
 
 
 app.listen(config.puerto_express, function(){

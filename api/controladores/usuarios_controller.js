@@ -107,7 +107,7 @@ usuarios_controller.registrar = function(request, response){
                                     </div>
                                     
                                     <div style="margin-bottom: 20px;">
-                                        <a href="http://localhost:4200/activar/${post.email}/${post.codigo}" target="_blank" style="background-color: #4CAF50; color: white; padding: 12px 20px; text-decoration: none; border-radius: 4px; font-size: 16px; text-align: center;">
+                                        <a href="${config.urlReal}/activar/${post.email}/${post.codigo}" target="_blank" style="background-color: #4CAF50; color: white; padding: 12px 20px; text-decoration: none; border-radius: 4px; font-size: 16px; text-align: center;">
                                             Activar Cuenta
                                         </a>
                                     </div>

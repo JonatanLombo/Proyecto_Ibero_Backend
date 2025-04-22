@@ -3,9 +3,16 @@ var config = {
     sesiones:{}
 }
 
+config.urlReal = "https://mundplant.llelou.space"
 config.puerto_express = 3000
-config.bd = "final_proyect"
 config.test = "final_test"
+
+config.bd = "BackendBit" //nombre bd mongo
+config.bdUser = "adminBit"
+config.bdPass = "admin123"
+config.bdIp = "128.199.8.32"
+config.bdPort = "27017"
+
 config.secret = "jvnadvg54av66465v5sdvfCF5Gdferfv<avad%%&($W%QW%45R4HGRASsdgfjd__ytvsev4"
 
 config.email.host = "smtp.gmail.com"
@@ -18,7 +25,8 @@ config.sesiones.expiracion = 60000 * 30
 
 config.listaBlanca = [
     "http://localhost:4200",
-    "http://localhost:9876"
+    "http://localhost:9876",
+    "http://localhost:3000"   
 ]
 
 
