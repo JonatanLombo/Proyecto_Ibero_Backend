@@ -3,15 +3,17 @@ var config = {
     sesiones:{}
 }
 
-config.urlReal = "https://mundplant.llelou.space"
+// config.urlReal = "proyecto.llelou.space"
+config.urlReal = "http://localhost:3000"
 config.puerto_express = 3000
 config.test = "final_test"
+config.bd = "proyecto_mundplant"
 
-config.bd = "BackendBit" //nombre bd mongo
-config.bdUser = "adminBit"
-config.bdPass = "admin123"
-config.bdIp = "128.199.8.32"
-config.bdPort = "27017"
+// config.bd = "BackendBit" //nombre bd mongo
+// config.bdUser = "adminBit"
+// config.bdPass = "admin123"
+// config.bdIp = "128.199.8.32"
+// config.bdPort = "27017"
 
 config.secret = "jvnadvg54av66465v5sdvfCF5Gdferfv<avad%%&($W%QW%45R4HGRASsdgfjd__ytvsev4"
 

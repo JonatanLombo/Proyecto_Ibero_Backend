@@ -39,18 +39,19 @@ app.all('*',function(req, res, next){
 //     console.log(error)
 // })
 
-//Base producción trabajo local
-// mongoose.connect("mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.8/" + config.bd).then((respuesta) => {
-//     console.log("Conexión exitosa a Mongo")
-// }).catch((error) => {
-//     console.log(error)
-// })
-
-mongoose.connect("mongodb://" + config.bdUser + ":" + config.bdPass + '@' + config.bdIp + ":" + config.bdPort +  "/" + config.bd).then((respuesta)=>{
-    console.log("Conexion correcta a mongo")
+// Base producción trabajo local
+mongoose.connect("mongodb://127.0.0.1:27017/" + config.bd).then((respuesta) => {
+    console.log("Conexión exitosa a Mongo")
 }).catch((error) => {
     console.log(error)
 })
+
+// Base Servidor
+// mongoose.connect("mongodb://" + config.bdUser + ":" + config.bdPass + '@' + config.bdIp + ":" + config.bdPort +  "/" + config.bd).then((respuesta)=>{
+//     console.log("Conexion correcta a mongo")
+// }).catch((error) => {
+//     console.log(error)
+// })
 
 
 app.use(cors({
